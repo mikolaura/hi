@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsj6w6bpx1kng"]
+
+[ext_resource type="Material" uid="uid://ynldru0h77n" path="res://planeColor.tres" id="1_bucjx"]
+[ext_resource type="PackedScene" uid="uid://dhm06nh0xa5nm" path="res://player.tscn" id="1_ywnwt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7v17g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a22m8"]
+size = Vector3(0.11508, 1, 0.116574)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(6.78044, 0, 0, 0, 0.178557, 0, 0, 0, 7.03375, 0, 0, 0)
+material_override = ExtResource("1_bucjx")
+flip_faces = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 3
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_7v17g")
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/RigidBody3D"]
+transform = Transform3D(8.85216, 0, 0, 0, 1.17092, 0, 0, 0, 8.44206, 0, 0, 0)
+shape = SubResource("BoxShape3D_a22m8")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_ywnwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.28081, 3)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.71826, 0, 0.695775, -0.158763, 0.973619, 0.163893, -0.67742, -0.228181, 0.699311, 3.83081, 1.54162, 5.0243)
